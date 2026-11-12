@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    uses: signoz/primus.workflows/.github/workflows/go-build.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-build.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
@@ -25,15 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: self-checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
       - name: go-install
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
         with:
           go-version: ${{ inputs.GO_VERSION }}
       - name: run-goreleaser
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6
         with:
           distribution: goreleaser-pro
           version: '~> v2'

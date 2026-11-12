@@ -8,12 +8,16 @@ on:
     types:
       - labeled
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   fmt:
     if: |
       (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'dependabot[bot]' && ! contains(github.event.pull_request.labels.*.name, 'safe-to-test')) ||
       (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe-to-test'))
-    uses: signoz/primus.workflows/.github/workflows/go-fmt.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-fmt.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
@@ -22,7 +26,7 @@ jobs:
     if: |
       (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'dependabot[bot]' && ! contains(github.event.pull_request.labels.*.name, 'safe-to-test')) ||
       (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe-to-test'))
-    uses: signoz/primus.workflows/.github/workflows/go-lint.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-lint.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
@@ -31,7 +35,7 @@ jobs:
     if: |
       (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'dependabot[bot]' && ! contains(github.event.pull_request.labels.*.name, 'safe-to-test')) ||
       (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe-to-test'))
-    uses: signoz/primus.workflows/.github/workflows/go-test.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-test.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
@@ -41,7 +45,7 @@ jobs:
     if: |
       (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'dependabot[bot]' && ! contains(github.event.pull_request.labels.*.name, 'safe-to-test')) ||
       (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe-to-test'))
-    uses: signoz/primus.workflows/.github/workflows/go-deps.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-deps.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
@@ -50,7 +54,7 @@ jobs:
     if: |
       (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork && github.event.pull_request.user.login != 'dependabot[bot]' && ! contains(github.event.pull_request.labels.*.name, 'safe-to-test')) ||
       (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe-to-test'))
-    uses: signoz/primus.workflows/.github/workflows/go-build.yaml@main
+    uses: signoz/primus.workflows/.github/workflows/go-build.yaml@26068fa3f4f17f400d756354638d0d59f016d43b # main
     secrets: inherit
     with:
       PRIMUS_REF: main
